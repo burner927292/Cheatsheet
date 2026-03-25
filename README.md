@@ -10,6 +10,10 @@ docker container prune #CAUTION this will delete all non-running containers
 
 to make docker work properly: sudo group add docker --> sudo usermod -aG docker $USER --> newgrp docker #this should make docker be runnable as sudo 
 
+sudo docker exec -it guac-mysql bash <-- this may be how you get into the containers to do stuff, need to get the robot to break it down or find a better way to figure it out. 
+
+docker logs guacamole - this is handy for troubleshooting
+
 
 
 
