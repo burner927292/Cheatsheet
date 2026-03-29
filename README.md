@@ -14,6 +14,9 @@ sudo docker exec -it guac-mysql bash <-- this may be how you get into the contai
 
 docker logs guacamole - this is handy for troubleshooting
 
+dpkg -l | grep mate //so this is to look up what is currently in my computer under mate. Also, you seem to have fucked up your keyboard again. 
+
+
 
 
 
