@@ -16,6 +16,24 @@ docker logs guacamole - this is handy for troubleshooting
 
 dpkg -l | grep mate //so this is to look up what is currently in my computer under mate. Also, you seem to have fucked up your keyboard again. 
 
+docker rm -f guacamole <-- the -f means force
+
+docker network ls <-- shows what networks docker has RN. 
+
+docker run --name guacamole \
+  --network guacnet \
+  -e MYSQL_HOSTNAME=guac-mysql \
+  -e MYSQL_DATABASE=guacamole_db \
+  -e MYSQL_USER=guacamole_user \
+  -e MYSQL_PASSWORD=yourpass \
+  -d -p 8080:8080 guacamole/guacamole 
+
+^^^^ this appears to be a working version of guacamole
+
+
+  docker inspect guacamole guac-mysql guacd --format='{{ json .NetworkSettings.Networks }}' | jq <-- this is how you inspect all of the containers cleanly
+
+
 
 
 
