@@ -42,6 +42,11 @@ renaming docker containers
 
 docker container rename zealous_neumann cloudflare
 
+connecting my container to a new network: 
+malware-rig@malware-rig:~$ docker network connect 021250535fc2 cloudflare
+where 021250535fc2 is the network id and cloudflare is the container 
+
+
 
 
 
