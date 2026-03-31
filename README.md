@@ -33,7 +33,10 @@ docker run --name guacamole \
 
   docker inspect guacamole guac-mysql guacd --format='{{ json .NetworkSettings.Networks }}' | jq <-- this is how you inspect all of the containers cleanly
 
-
+autorestarting in docker: 
+docker run -d --restart=unless-stopped <image_name>: Recommended for most services; respects manual stops but restarts on reboot. 
+docker run -d --restart=always <image_name>: Forces the container to restart on reboot and after every exit, even if manually stopped. 
+docker run -d --restart=on-failure <image_name>: Restarts only if the container exits with a non-zero code. 
 
 
 
