@@ -47,6 +47,9 @@ malware-rig@malware-rig:~$ docker network connect 021250535fc2 cloudflare
 where 021250535fc2 is the network id and cloudflare is the container 
 
 
+How to ssh from my own machine: 
+ssh malware-rig@192.168.0.50
+
 
 
 
