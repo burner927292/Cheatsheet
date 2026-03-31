@@ -38,6 +38,10 @@ docker run -d --restart=unless-stopped <image_name>: Recommended for most servic
 docker run -d --restart=always <image_name>: Forces the container to restart on reboot and after every exit, even if manually stopped. 
 docker run -d --restart=on-failure <image_name>: Restarts only if the container exits with a non-zero code. 
 
+renaming docker containers
+
+docker container rename zealous_neumann cloudflare
+
 
 
 
