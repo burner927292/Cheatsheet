@@ -46,6 +46,7 @@ connecting my container to a new network:
 malware-rig@malware-rig:~$ docker network connect 021250535fc2 cloudflare
 where 021250535fc2 is the network id and cloudflare is the container 
 
+nc -zv 192.168.1.134 22 - this will see if port 22 is open on the ip address 192.168.1.134 
 
 How to ssh from my own machine: 
 ssh malware-rig@192.168.0.50
