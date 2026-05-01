@@ -51,6 +51,11 @@ nc -zv 192.168.1.134 22 - this will see if port 22 is open on the ip address 192
 How to ssh from my own machine: 
 ssh malware-rig@192.168.0.50
 
+sudo ss -tlnp | grep 3389  #sudo: i know, ss = socket statistics, tells me about whats going on in my sockets, -tlnp are flags
+-t filter for TCP (not sure what it is but its a protocol for web browsing stuff)
+-l listening, filters for stuff thats "listening" on the ports. 
+-n numerical, this tells it to give it as a number, speeds it up
+-p tells me the process id, will tell you what "owns" the port
 
-
-
+Already know grep and 3389. Reminder of pipe 
+| = take the output from the left and feed it into right 
