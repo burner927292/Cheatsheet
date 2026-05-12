@@ -59,3 +59,6 @@ sudo ss -tlnp | grep 3389  #sudo: i know, ss = socket statistics, tells me about
 
 Already know grep and 3389. Reminder of pipe 
 | = take the output from the left and feed it into right 
+
+ip neigh show #shows the neighbours of this machine 
+
