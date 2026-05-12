@@ -62,3 +62,7 @@ Already know grep and 3389. Reminder of pipe
 
 ip neigh show #shows the neighbours of this machine 
 
+so in the instance of setting up open webui: 
+i set the thing up supposedly but i needed to check if it was actually accessible over a port, i didnt have access to a browser so i couldnt test. you can basically ping a website type thing with it? but its got include headers, it probably would have shown a lot more of the website if it had actually gotten through, but now. 
+curl -I http://localhost:3000 (with localhost:3000 being the thing your pinging) im not sure what the flag -i is for, looking it up now. 
+
