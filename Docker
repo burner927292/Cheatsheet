@@ -39,4 +39,47 @@ connecting my container to a new network:
 malware-rig@malware-rig:~$ docker network connect 021250535fc2 cloudflare
 where 021250535fc2 is the network id and cloudflare is the container 
 
+14.5.26
+Saving and importing docker stuff
+saving: 
+to structure these in the first place you would put it this way (with commit as an example)
+docker commit <new_image_name><current_container_name>
+where: 
+docker: tells bash its a docker call
+commit: tells docker it's a commit command
+<new_image_name>: self explanatory
+<current_container_naime>: self explanatory
+1. docker save
+Just saves the filesystem of the container, not the metadata, and im pretty sure it's the metadata that gets the dependencies and makes docker worthwhile
+https://docs.docker.com/reference/cli/docker/image/save/
 
+2. docker export
+saves the filesystem and the metadata i think
+https://docs.docker.com/reference/cli/docker/container/export/
+
+3. docker commit
+docker commit takes everything in the docker and repackages it as an image, the whole thing. I'm pretty sure this is what i want to be doing. <- question: what actually is the difference between this and export though,
+what's the extra data you get? still not 100 about this one as it also seems to be something to do with changes in a git style 
+https://docs.docker.com/reference/cli/docker/container/commit/
+
+4. docker image
+docker-compose save will give you the whole stack as a compose file that you can then run. <- question: how would you actually put this together i guess
+this might be a dud. 
+
+Loading
+1. docker load
+this will load the docker image, proper settup with folder system stuff to come below. Will "load the image" so... not sure
+https://docs.docker.com/reference/cli/docker/image/load/
+
+2. docker import
+docker load but for importing images, not quite sure what the difference is between this and load to be honest. it appears to just import the filesystem
+https://docs.docker.com/reference/cli/docker/image/import/
+
+3. docker compose load
+this will load a whole compose file 
+4. docker run 
+itll create it from the image and run it
+
+^^^ this all came from Llama which has since been disproved somewhat, so im going to need to do some stuff around it and read the proper 
+documentation. double checked against the documentation
+You got a bit confused here because theres certain things you dont know about docker, so just make sure to come back to it. 
