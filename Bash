@@ -27,3 +27,5 @@ so to change fire wall rules we do this:
 sudo ufw allow 3000/tcp 
 where ufw is the firewall, allow is allow, 3000 is the port, idk what /tcp is but i know it's a protocol
 
+Code to give system specs: 
+inxi -Fxz
