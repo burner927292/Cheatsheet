@@ -1,1 +1,14 @@
-
+21.5.26 copied from other python repo 
+-r : makes it only look in this module and parents, not anywhere else
+load_dotenv : makes the whole thing look for the .env file in this and parent directorys 
+active virtual env: source "VENV NAME"/bin/activate
+when you want to start a venv with a premade list of environments you can set up a .txt file that names them:
+reqs.txt that would contain (for example)
+msal 
+requests
+python-dotenv
+//
+then once your in your venv you run:
+pip install -r reqs.txt
+//
+-r means read from file 
