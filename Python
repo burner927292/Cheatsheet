@@ -12,3 +12,13 @@ then once your in your venv you run:
 pip install -r reqs.txt
 //
 -r means read from file 
+
+21.5.26
+Venv Files breakdown: 
+Venv: virtual envrionment (which apparently need activating)
+venvs dont work like anybody else says. unfortunately ive had to use ai for this. 
+to make a venv (in this example outlook-test) then we use: 
+python3 -m venv outlook-test
+and then to activate that virtual envrinment
+source outlook-test/bin/activate
+This needs to be done from the source, not from CD'd inside the directory, for some reason. 
