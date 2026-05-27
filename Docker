@@ -83,3 +83,65 @@ itll create it from the image and run it
 ^^^ this all came from Llama which has since been disproved somewhat, so im going to need to do some stuff around it and read the proper 
 documentation. double checked against the documentation
 You got a bit confused here because theres certain things you dont know about docker, so just make sure to come back to it. 
+27.5.26
+So in efforts to get my windows laptop running guacamole for a full control home ecosystem ive spoken to claude about how to get docker compose up because the above didnt work, it also gave me a more convoluted
+way of doing it that uses bash properly. This is somewhat annoying as ive not been able to do it off my previous notes, but at the very least im learning more. Im writting down
+my findings here so i can keep learning. 
+
+problem: 
+I want to put everything through docker compose onto my windows laptop and then run that in bash so i can remote into my personal laptop for the sake of convenience. The code above A: wasnt very clear as to what to actually
+type and B i dont think it would of work. 
+
+What i got: 
+scp malware-rig@192.168.0.204:/path/to/docker-compose.yml ~/docker-compose.yml
+SCP: Secure Copy Protocol (via SSH). format: scp>source>destination
+SCP is to copy files between machines over SSH. It will likely ask for a password. 
+So in this instance its "scp malwa-rog@192.168.0.204:path"" ~/docker-compose.yml " and the docker copmose yml is the destination so it's just shoved it kind of wherever on the laptop. 
+The source was the rig, i assume it was expecting me to fill the rest of the text myself to make it actually behave like the laptop. I can see that becoming an issue so i would likely actually just munually hand it over,
+or get the shared drive working so that i dont need to keep fucking about with this stuff. This also has the issue of not properly saving the docker compose file, so i still need to figure out how to actually save it as a 
+docker compose file.
+
+find / -name "docker-compose.yml" 2>/dev/null
+What does the find / -name part of this really mean, how does the grammer of it work, i ask so i can use it myself on other stuff
+Working principle: this is a system that finds the docker compose file in a file structure with a lookup command that will usually give a long list of errors. It then uses 2>/dev/null to basically send all the errors
+to the bin. 
+2>/dev/null Dev/null is effectively a predetermined unfillable folder that just deletes anything put in it, i guess. 
+2> is a reference to output redirection. 
+0> means its an input (stdin - standard input)
+1> means its a normal output (stdout)
+2> means its an error output (stderr)
+> : the ">" means to redirect something somewhere, so if it sees those before it it knows what kind of data its redirecting, so its redirecting all error messages to the bin. 
+
+docker compose up -d
+So this docker compose up -d is relating to directories. The thing is that every time im making these docker containers i should really be making my own directories so that theyre self contained. 
+I've not been because im an amature but ill get there, and im going to start doing it as when i put the mounted filesystem up. so i should put it in a directory called guacamole compose so every time i have a new
+machine i just run docker on it, plug it into that shared drive and run all of the docker containers on it (obviously not before running whatever linux image i fancy on it). This i can definitely script. 
+
+So this one didnt actually give me how to export the compose file but it goes on to below: 
+This is what puts together the compose file: 
+docker run --rm -v /var/run/docker.sock:/var/run/docker.sock ghcr.io/red5d/docker-autocompose guacd guacamole guac-mysql > docker-compose.yml
+^^^ this still needs explenation. 
+to be finished, based off the claude conversation and gema4 conversation in the setting up guacamole remote desktop chat. 
+
+We also run into the problem that this is exporting the image but not the data in it (and with that we have a security issue as the passwords are all the same, so we are about to need to have a proper 
+implementation of the randomized passwords system which will eventually be plugged into lots more stuff. That's good i guess. Anyway for now that's another issue we ran into. 
+
+Furthermore, there is the point of the mounted drive: right now everythings getting shared point to point which works but is a bit bedrock when really this is meant to be a LAN. So we now want to fix the mounted drive, 
+have a bunch of compose files put on it while we are at it.
+
+Also! I then thought about if ive done wireguard through docker as if so i would be able to just copypaste it into everything. I did not, but while looking i went on stack overflow to find solutions to stuff, one of the 
+solutions was a FOR loop to see what programmes i have on the machine. It gave me the following: 
+
+for app in /usr/share/applications/*.desktop ~/.local/share/applications/*.desktop; do app="${app##/*/}"; echo "${app::-8}"; done
+
+Explaination: 
+this is the for loop. i believe starting for just makes it a for loop, then done ends it. 
+app in means look for the work app in the irectory here as well as that other directory, echo we know means output what youve got, i guess app is set as a variable at some point and theres also some wild cards there.
+Anyway, go to go, end of the work day. 
+
+
+
+
+
+
+
