@@ -39,4 +39,7 @@ as you can see, it figures it out.
 
 Next you set up the VENV so it's actually got stuff, using the steps above
 then in the venv you run: pip install -r reqs.txt 
-That is, if you have the reqs.txt file settup. Some places seem to not have done that (I.E on your rig)
+That is, if you have the reqs.txt file settup. Some places seem to not have done that (I.E on your rig).
+
+This has introduced the problem that i must have not fully installed python or something on my laptop (i remember that being a back and forth issue before) because in the reqs is msal but 
+then when i try and run it it says sure you have python3-full installed. No wait it's giving me an error about externally-managed-environments... google time me thinks. 
