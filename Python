@@ -63,18 +63,3 @@ python -m src.modules.email_parser
 or something like that ^^^
 basically find the right thing to put in the BASH version and run it and maybe thatll do a venv properly. 
 
-Any other lessons? More just notes for next time: 
-Make sure to update the venv stuff
-update the requirements.txt file to have more stuff as theres a few missing dependencies. 
-
-Game plan for tomorrow: 
-switch off the power automate system and just feed it dummy emails by hand. Once that's done it will be good to go and you can troubleshoot all the other issues and start adding features. 
-move files over to rig 
-boot it all on rig
-stitch the "token pull + poll" code together with the "test ai agent" codo and then add the "uploader" code at the end. 
-debug that
-Break it up into modules that pass things along, finishing at the uploader#
-debug
-try and get it to run in the background. 
-debug
-look into having it run on the computer and then hand stuff to the rig over network ports. 
