@@ -22,3 +22,21 @@ python3 -m venv outlook-test
 and then to activate that virtual envrinment
 source outlook-test/bin/activate
 This needs to be done from the source, not from CD'd inside the directory, for some reason. 
+
+28.5.26
+But how do i get it to fucking run? ok so here's how running stuff works, at least as far as i am currently concerned:
+top right you go to terminal and open a new terminal. That will dump you in the classic root position of a normal terminal but in some context for the visual studio code environment i guess? 
+anyway so youll probably be sat at something like malwar-eserver@malware-server-ThinkPad-T480:...
+You want to CD into whatever folder system your thing is in. like below: 
+malware-server@malware-server-ThinkPad-T480:~/Watcher Agent$ cd src
+malware-server@malware-server-ThinkPad-T480:~/Watcher Agent/src$ cd src
+bash: cd: src: No such file or directory
+malware-server@malware-server-ThinkPad-T480:~/Watcher Agent/src$ cd src/src
+bash: cd: src/src: No such file or directory
+malware-server@malware-server-ThinkPad-T480:~/Watcher Agent/src$ cd "pre 24.6.26
+
+as you can see, it figures it out. 
+
+Next you set up the VENV so it's actually got stuff, using the steps above
+then in the venv you run: pip install -r reqs.txt 
+That is, if you have the reqs.txt file settup. Some places seem to not have done that (I.E on your rig)
