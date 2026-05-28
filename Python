@@ -46,3 +46,35 @@ then when i try and run it it says sure you have python3-full installed. No wait
 Also one thing to note: to get out of a virtual environment you just want to type: 
 deactivate
 this will get you out of the VENV
+
+So, at the end of all of that. I've also discovered a few issues with just the process of putting python stuff together. First off is obviously managing different generations of versions etc.
+Big emphasis on having it structured properly as you got. If possible keep everything related in the one folder, inside that keep one solid folder of everything that works and a detailed
+description of how that runs inside the script itself. With all the loose odds and ends you can then make the file structure more confusing and eventually land on a way that works for you
+for me, ive just got folders with tested-work and tested-dont work while i figure out better catagorisation. inside that i have stuff by date and just need to figure out use of title nomenclature
+and readmes to make that work properly, then figure out how to implement git to make it work properly because fucking fuck this is a pain. Anyway, i have now clearly marked which one works
+properly, or atleast appeared to work properly. Im getting a bit more token fuckery but for now i think it's going to be alright. I have then saved everyhing as V1 and V2 of the watcher agent's.
+Hopefull ill get a working one before v10 or else im going to destroy my capacity at filing. Or atleast i hope that i can sort out the git system before then, hopefully thatd make it easier. 
+
+What else have i learned? well the venvs continue to be a pain, and they are effectively just a seperate file structure that hijacks the root command before it can do root stuff in order to stop it
+running to my machine, instead running to venv/bin. Because of this i need to make sure that i put one venv folder in at the same time as the source code and then signpost it properly when your doing stuff
+in the terminal line. In theory that means:
+# This tells Python to run the module within the context of the project root
+python -m src.modules.email_parser 
+or something like that ^^^
+basically find the right thing to put in the BASH version and run it and maybe thatll do a venv properly. 
+
+Any other lessons? More just notes for next time: 
+Make sure to update the venv stuff
+update the requirements.txt file to have more stuff as theres a few missing dependencies. 
+
+Game plan for tomorrow: 
+switch off the power automate system and just feed it dummy emails by hand. Once that's done it will be good to go and you can troubleshoot all the other issues and start adding features. 
+move files over to rig 
+boot it all on rig
+stitch the "token pull + poll" code together with the "test ai agent" codo and then add the "uploader" code at the end. 
+debug that
+Break it up into modules that pass things along, finishing at the uploader#
+debug
+try and get it to run in the background. 
+debug
+look into having it run on the computer and then hand stuff to the rig over network ports. 
