@@ -1,0 +1,53 @@
+#3.6.26 Settup of git
+#so you CD into the directory:
+cd "Agent3.6.26 ERA consolidated v1"
+#initial git
+git init #this creates the folder structure in the first place and figures out what its doing base d on where it is. 
+#configure an git ignore because sometimes things will unnecessarily change and then potentially break stuff, frankly i dont know too much about why this is the case or why im putting specific things in, but so it goes 
+nano .gitignore #this opens the nano file
+#then you insert everything you want to ignore, so in this case: 
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
+.venv/
+*.sqlite3
+*.log
+.DS_Store
+# i should definitely google this. 
+#then you add it? (?)(???) AI is just saying add everything too. It's probably just a thing that it needs to get loaded before it's commited properly. 
+git add .
+
+git commit -m "Initial commit - opening version of project" # this is the proper commit command and it runs everything into the git repo, this is now properly saved. 
+#then you can check if it's working with
+git status
+#so after this it becomes a job of adding it to github which needs special keys to be generated and assigned because it refuses to just use a normal password. im not dealing with that right now so it can just stay local
+#so the daily driver is: 
+#check status
+git status
+#stage changes 
+git add filename.py
+# or to add everything
+git add . 
+
+# save that version
+git commit -m "short description of change"
+
+#and then to recall 
+git log # to see the history
+git checkout -- filename.py #restores
+git reset --hard <commit_id> #rolls the project back to an easrlier version (what the fuck is the commit_id?)
+
+#You can also branch stuff, which would be worthwhile doing right now, having this as the branch that i fix everything on and then return it to a proper saved state such that the main is now working but we can see where
+#we can from. 
+#you branch as follows
+git checkout -b new-feature
+#then i guess you commit changes as you go to the branch, double check that, also look into what this does for saving files. 
+#then to checkout and merge:
+git checkout main
+git merge new-feature
+
+#this should merge it all properly. 
+
