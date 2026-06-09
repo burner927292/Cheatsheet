@@ -139,6 +139,10 @@ this is the for loop. i believe starting for just makes it a for loop, then done
 app in means look for the work app in the irectory here as well as that other directory, echo we know means output what youve got, i guess app is set as a variable at some point and theres also some wild cards there.
 Anyway, go to go, end of the work day. 
 
+How to find internal IP address of docker containers: 
+
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_name   
+
 
 
 
