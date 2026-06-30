@@ -63,3 +63,71 @@ python -m src.modules.email_parser
 or something like that ^^^
 basically find the right thing to put in the BASH version and run it and maybe thatll do a venv properly. 
 
+30.6.26
+Python scripting mid way through agent building; 
+script for making a orchestrator agent first needs an agent that just outputs catagories to be passed along in python script: 
+you'd do that with: 
+def run_orchestrator(email_content):
+    response = chain.invoke({"query": email_content})
+    category = response.content.strip().lower()
+    
+    # defend against model adding extra words
+    if "calendar" in category:
+        return "calendar"
+    elif "ignore" in category:
+        return "ignore"
+    elif "respond" in category:
+        return "respond"
+    else:
+        return "respond"  # safe default if it gives something unexpected
+then the prompt is: 
+("system", """
+You are a classification agent. Read the email below and output EXACTLY ONE WORD from this list:
+respond
+ignore
+calendar
+
+Do not explain your reasoning. Do not add punctuation. Output only the single word.
+
+respond = the email needs a reply (enquiry, question, request)
+ignore = spam, automated notification, no action needed
+calendar = the email is about shift availability, scheduling, or booking a date
+"""),
+
+then it gets plugged into main.py with
+from orchestrator import run_orchestrator
+
+def handle_job(local_path, token):
+    with open(local_path, "r") as f:
+        email_content = f.read()
+
+    category = run_orchestrator(email_content)
+    print(f"Orchestrator decision: {category}")
+
+    if category == "ignore":
+        print("Ignoring email, no action taken.")
+        return
+
+    elif category == "calendar":
+        handle_calendar_job(email_content, token)
+        return
+
+    elif category == "respond":
+        handle_response_job(email_content, token)
+
+so to break down the very first bit: 
+
+def run_orchestrator(email_content): #def is defining the fucntion, run_orchestrator is naming the function. (email_content) is a "placeholder" for whatever will actually get passed into this, so you have to define email content first before you call the variable and then it will use it when you call this funtion
+    response = chain.invoke({"query": email_content}) #response is a variable, so the content of the response variable will be x, chain.invoke basically means that of the "chain" we set up earlier, we are using the output from that chain call as in langchain you did before. Invoke is there another aspect of that, so it is largely just saying "run the chain we defined earlier". when ou write some thing like ({"query": email_content}) it puts it as a dictionary, with one being defined by the other
+#So this whole line means: "run the chain with the email content slotted into the query placeholder, and store whatever comes back in a variable called response."
+    category = response.content.strip().lower() #catatagory s the variable, and then you've got all these full stops here to show that you are chaining a bunch of commands together, where response is whatever langchain handed back, content is that response but read as a string, then strip() removes the white spaces around it, as there can throw errors, then .lower() forces it all into lower case.
+    
+    # defend against model adding extra words
+    if "calendar" in category:
+        return "calendar"
+    elif "ignore" in category:
+        return "ignore"
+    elif "respond" in category:
+        return "respond"
+    else:
+        return "respond"  # safe default if it gives something unexpected
