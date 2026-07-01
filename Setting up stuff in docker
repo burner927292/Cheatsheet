@@ -1,0 +1,92 @@
+1.7.26
+
+So i rode back seat on setting up another docker thing and i think i have a loose idea of setting stuff up from compose files. This isnt the same
+as coding it porperly myself, but i can atleast maybe not need to use ai for it. so
+step 1: 
+find your thing, go to the github. The github will hava a fucking compose file. The compose file itself is just the list of instructions on setting it up
+or atleastr some level of data about it which then gets run when you do docker compose up
+
+Step 2:
+need to make a directory for the thing: 
+mkdir docker-obsidian
+
+that then makes a directory which means you will have a folder that you put stuff in, and then run docker compose up from that. 
+
+step 3: 
+docker reads stuff from ymls, and i think txt documents, but who knows. Anyway. So you need to get this compose file. You need to save it into a yml file. but
+not before setting up a directery. So i think you need to use nano for it? yeah you run sudo nano and then the filename and then end that with yaml 
+so id go
+sudo nano obsidion-compose.yaml
+and then in that nano folder i would paste the contents of the docker compose file
+
+Step 4: 
+Here's the example:
+---
+services:
+  obsidian:
+    image: lscr.io/linuxserver/obsidian:latest
+    container_name: obsidian
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=EUR/LON
+    volumes:
+      - /path/to/config:/config
+    ports:
+      - 3000:3000
+      - 3001:3001
+    shm_size: "1gb"
+    restart: unless-stopped
+
+So this then has some paramaters i have to look over. Originally it had a different timezone (TZ), so i switched that over. 
+The puid and pgid is just making sure that everyone has the correct permissions (puid is the user admin privilage which your user should have
+the other one i think is the equivelent privilage inside the container), image is just the name of the image from the docker (or more likely github)
+distro name, so that will just find it so long as it's got a wifi connection. container name is just what it will end up naming it. 
+volumes is where it stores it's stuff. This one i still need a trick for because ive forgotten how to get the proper path for it
+but i then googled it and then you can use xclip to get it and xclip you can download so youd run:
+sudo apt install xclip -y
+then when thats down we run
+echo -n "$PWD" | xclip -selection clipboard
+which will the ngive me 
+/home/malware-server/docker-obsidian
+
+the ports are how the ports in your computer line up with the ports in the docker file. In my instance 3000 is already in use so im going to
+patch it to 3002 or something instead so it's not a problem. 
+shm_size: fuck knows what that means
+restart: unless-stopped means it will switch on whenever the laptop switches on or it will restart if it fails from an error. 
+
+So i would need to change it to... 
+
+
+  GNU nano 7.2                                          obsidian-compose.yaml                                                   
+---
+services:
+  obsidian:
+    image: lscr.io/linuxserver/obsidian:latest
+    container_name: obsidian
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=EUR/LON
+    volumes:
+      - /home/malware-server/docker-obsidian:/config
+    ports:
+      - 3002:3000
+      - 3001:3001
+    shm_size: "1gb"
+    restart: unless-stopped
+
+
+This then works, but keep in mind you have to put it over to 3001 in http and 3002 in https, so cloudflare is https and local is http. 
+
+I then set it to cloudflare with a whole other system which i wont get into. 
+
+
+
+
+
+
+
+
+
+
