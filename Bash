@@ -29,3 +29,18 @@ where ufw is the firewall, allow is allow, 3000 is the port, idk what /tcp is bu
 
 Code to give system specs: 
 inxi -Fxz
+
+who -u #shows all current users on machine
+kill -9 [PID] 
+kill = end this process
+-9 = do not clean up, just kill the fuckign thing
+[PID] = is the process id 
+#for example: 
+malware-rig@malware-rig:~$ malware-rig@malware-rig:~$ who -u
+malware-rig pts/0        2026-07-08 14:09   .       4062222 (:10.0)
+malware-rig pts/7        2026-07-08 13:53   .       4048117 (192.168.0.200)
+malware-rig@malware-rig:~$ kill -9 4062222
+malware-rig@malware-rig:~$ who -u
+malware-rig pts/7        2026-07-08 13:53   .       4048117 (192.168.0.200)
+That's how you kill the silly headless processes. 
+
