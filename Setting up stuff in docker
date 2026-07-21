@@ -82,6 +82,12 @@ This then works, but keep in mind you have to put it over to 3001 in http and 30
 I then set it to cloudflare with a whole other system which i wont get into. 
 
 
+I then need to actually fucking run it which i forgot to put to writing so heres that:
+
+ docker compose -f docker-obisidan.yaml up -d
+
+and then if you want to redo it you need to rtun docker compose -f docker-obsidian.yaml up -d --force-recreate
+ 
 
 
 
